@@ -15,10 +15,11 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
     steps:
       - name: Debug Info
         uses: hmarr/debug-action@v2
       - uses: actions/checkout@v3
       - name: Run deploy
-        run: echo ${{ inputs.env }}
+        run: echo ${{ vars.ENVI }}
 
