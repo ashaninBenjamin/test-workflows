@@ -1,5 +1,8 @@
 name: Deploy
 on:
+  push:
+    branches:
+    - main
   workflow_dispatch:
     inputs:
       env:
@@ -15,7 +18,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: ${{ inputs.env }}
+    environment: ${{ github.event_name == 'push' && 'production' || inputs.env }}
     steps:
       - name: Debug Info
         uses: hmarr/debug-action@v2
